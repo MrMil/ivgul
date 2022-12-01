@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <title>עיבגול</title>
+
+    <link rel="icon" type="image/png" href="./favicon.png" />
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    <style>
+    body {
+      margin: 30px 0px 0px 0px;
+    }
+    #top {
+      text-align: center;
+      background-color: lightblue;
+    }
+    .explaination-text {
+      font: 15px Helvetica
+    }
+
+    h2 {
+      font Helvetica;
+      cursor: pointer;
+    }
+    
+    #content {
+      margin: 30px;
+    }
+
+    @media (min-width: 1000px) {
+      #content {
+        margin: 100px;
+      }
+    }
+    </style>
+    <style media="screen">
+    
+    </style>
+        <py-script src="./ivgul.pys"></py-script>
+        <py-script>
+from pyodide.ffi import create_proxy
+from js import navigator
+
+
+def delete_target_div(target):
+  document.getElementById(target).innerHTML = ""
+
+
+def render_textarea(event):
+  font_size = 1 + (int(document.getElementById("font_size").value) - 50) / 10
+  font_color = document.getElementById("textcolor").value
+  delete_target_div("glyphcontainer")
+  render_ivgul(document.getElementById("user_inserted_text").value, "glyphcontainer", font_size, font_color)
+
+
+def toggele_element(event):
+  element_to_toggle = event.target.id.replace('_header', '')
+  element = document.getElementById(element_to_toggle)
+  if element.style.display == "block":
+    element.style.display = 'none'
+  else:
+    element.style.display = 'block'
+
+
+def change_bg_color(event):
+  color = event.target.value
+  document.getElementById("glyphcontainer").style.backgroundColor = color
+
+def main():
+  proxy = create_proxy(render_textarea)
+  document.getElementById("user_inserted_text").addEventListener("input", proxy)
+  document.getElementById("font_size").addEventListener("input", proxy)
+  document.getElementById("textcolor").addEventListener("input", proxy)
+
+  proxy = create_proxy(toggele_element)
+  for element in document.getElementsByTagName("h2"):
+    element.addEventListener("click", proxy)
+
+  proxy = create_proxy(change_bg_color)
+  document.getElementById("bgcolor").addEventListener("input", proxy)
+  
+  width = document.documentElement.clientWidth
+  if width < 1000:
+    header_scale = 1
+  else:
+    header_scale = 2.5
+  render_ivgul("עןב|גךל הןא שן|טףת כ.תן|בףה חף|דף|שףה ב.ץ|עןב|רןת", "ivgul_header", header_scale, "#040040")
+  render_ivgul("עןב|גךל", "ivgul")
+  render_ivgul("כ.תןב", "ktiv")
+  render_ivgul("שף שץ שן שם שך", "tnuot")
+  render_ivgul("שף", "sha", 0.5)
+  render_ivgul("שץ", "she", 0.5)
+  render_ivgul("שן", "shi", 0.5)
+  render_ivgul("שם", "sho", 0.5)
+  render_ivgul("שך", "shu", 0.5)
+  render_ivgul("כ.ףכ כ.םת|בןמ עןב|גךל", "this_is_how")
+  render_ivgul("עןב|גךל", "in_ivgul")
+  render_ivgul("צץי|רץ מץי|דףע", "zere")
+  render_ivgul("רך|אףח רך|אףח רך|אףח רך|אףח\nבף|פףר|דץס נף|פףל תף|פ.ך|אףח", "ruah")
+  render_ivgul("""ב.ץ|רץ|שןת ב.ף|רףא אץ|לם|הןמ אץת הף|שף|מף|יןמ וץ|אץת הף|אף|רץצ
+וץ|הף|אף|רץצ הףי|תףה תם|הך וף|ום|הך וץ|חם|שץכ עףל פ.נץי תץ|הםמ
+וץ|רך|אףח הף|אץ|לם|הןמ מץ|רף|חץ|פץת עףל פנץי הף|מף|יןמ
+
+וף|יםא|מץר אץ|לם|הןמ יץ|הן אםר
+וף|יץ|הן אםר""", "dugma", color="#4D4A00")
+
+
+main()
+      </py-script>
+  </head>
+
+  <body>
+    <div id="top"><div id="ivgul_header"></div></div>
+    <div id="content" class="explaination-text">
+        <h2 id="maze_header">מה זה?</h2>
+        <div id="maze" style="display: block">
+          <div id="ivgul" style="display: inline"></div>, או בכתיב רגיל "עיבגול" היא שיטת כתיבה לשפה העברית המבוססת על שיטת הכתיבה הקוריאנית "הנגול".<br>
+          בשיטה זו כל הברה היא יחידה אחת. העיצורים בתחילת ההברה נכתבים למעלה, התנועה נכתבת באמצע והעיצורים בסוף ההברה נכתבים למטה. לדוגמה, כך נכתבת המילה "כתיב":<br><div id="ktiv"></div>
+          כפי שניתן לראות, התנועות מסומנות עם סימני הניקוד הרגילים. יוצא הדופן היחיד הוא החולם (התנועה "o"), מכיוון שהוא נכתב מעל האות בניקוד הרגיל. מסיבה זו החולם הוחלף בקו אנכי.
+          כך נראות התנועות:
+          <div id="tnuot"></div>
+          <br>
+          לכל תנועה יש רק סימן אחד ואין אותיות סופיות. כך ניתן לקרוא ולכתוב כל מילה שיודעים לבטא כראוי.<br><br>
+          <br>
+        </div>
+        <h2 id="haklada_header">הקלדה</h2>
+        <div id="haklada" style="display: block">
+          מכיוון שב<div id="in_ivgul" style="display: inline"></div> אין שימוש באותיות סופיות, האותיות הסופיות במקלדת משמשות להקלדת התנועות:
+          <div id="sha" style="display: inline"></div> יוקלד "שף", 
+          <div id="she" style="display: inline"></div> יוקלד "שץ", 
+          <div id="shi" style="display: inline"></div> יוקלד "שן", 
+          <div id="sho" style="display: inline"></div> יוקלד "שם", 
+          <div id="shu" style="display: inline"></div> יוקלד "שך".<br>
+          <br>בין הברות יש קו אנכי "|", בין מילים יש רווח.<br>
+          באותיות כ', ב' ו-פ' ניתן לשים דגש על ידי הוספת נקודה אחרי האות. <br><br>
+          "כך כותבים עיבגול" יוקלד "כ.ףכ כ.םת|בןמ עןב|גךל"
+          <div id="this_is_how"></div>
+          <br>
+        </div>
+        <br>
+        <div id="glyphcontainer" style="padding-right: 30px"></div>
+        <br><br>
+        הקלידו:<br>
+      <textarea id="user_inserted_text" style="width: 100%; height: 200px;"></textarea><br>
+      גודל: <input type="range" min="41" max="100" value="50" class="slider" id="font_size"> צבע הרקע: <input type="color" value="#FFFFFF" id="bgcolor">
+      צבע הטקסט: <input type="color" value="#000000" id="textcolor">
+      <br>
+      <h2 id="lama_header">למה זה טוב?</h2>
+      <div id="lama" style="display: block;">
+      חשבתי שזה רעיון מצחיק ואתגר תכנותי נחמד, אני לא חושב שבאמת צריך להשתמש בזה :)
+      </div>
+      <h2 id="notes_header">הערות נוספות</h2>
+      <div id="notes" style="display: block;">
+      בעברית יש שני דיפטונגים, צירי ופתח גנובה. צירי כותבים כך:
+      <div id="zere"></div>
+      פתח גנובה אין דרך טובה לעשות.<br>
+      הוספתי פתח שיוצג על ידי התו "_" אבל גם זה לא נראה נכון וגם לא רציתי ליצור בלבול בין הפתח לקמץ, רציתי שלכל תנועה יהיה רק סימן אחד. <br>
+      פשרה שמצאתי היא לכתוב פתח גנובה כך:
+      <div id="ruah"></div>
+      אבל רוח ותפוח לא מבטאים "רואח" ו"תפואח", זה דיפטונג.<br>
+      אם יש לכם הצעות אשמח לשמוע
+      </div>
+      <h2 id="dugma_header">דוגמה: בראשית א'<h2>
+      <div id="dugma" style="display: block; padding-left: 30px; background-color: #FFFFF0"></div>
+      <br><br>
+      <div class="explaination-text" style="width: 100%; text-align: center">כל הזכויות שמורות לעפר מוסטיגמן</div>
+      <br>
+      <div id="test"></div>
+    </div>
+  </body>
+</html>
