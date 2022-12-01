@@ -116,10 +116,9 @@ def main():
 
 
 def call_main_functions_available():
-  try:
-    if file_loaded_successfully:
-      main()
-  except NameError:
+  if file_loaded_successfully:
+    main()
+  else:
     proxy = create_proxy(call_main_functions_available)
     setInterval(proxy, 500)
 
