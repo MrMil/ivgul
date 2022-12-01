@@ -174,3 +174,5 @@ def create_render_ivgul_js_function_in_window():
     window.render_ivgul = proxy
 
 create_render_ivgul_js_function_in_window()
+
+file_loaded_successfully = True
