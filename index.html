@@ -50,7 +50,7 @@
         <py-script src="./ivgul.pys"></py-script>
         <py-script defer>
 from pyodide.ffi import create_proxy
-from js import navigator, window, setInterval, document
+from js import navigator, window, setTimeout, document
 
 
 def delete_target_div(target):
@@ -122,7 +122,7 @@ def call_main_functions_available():
       pass
   except NameError:
     proxy = create_proxy(call_main_functions_available)
-    setInterval(proxy, 500)
+    setTimeout(proxy, 500)
   else:
     main()
 
