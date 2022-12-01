@@ -14,7 +14,7 @@
     <script defer src="https://pyscript.net/latest/pyscript.js"></script>
     <style>
     @font-face {
-      font-family: 'David';
+      font-family: 'MyDavid';
       src: url('./david.ttf');
     }
     body {
@@ -125,7 +125,11 @@ def call_main_functions_available():
     proxy = create_proxy(call_main_functions_available)
     setTimeout(proxy, 500)
   else:
-    main()
+    if not document.fonts.check("100px MyDavid"):
+      proxy = create_proxy(call_main_functions_available)
+      setTimeout(proxy, 500)
+    else:
+      main()
 
 
 call_main_functions_available()
@@ -191,6 +195,7 @@ call_main_functions_available()
       <div class="explaination-text" style="width: 100%; text-align: center">כל הזכויות שמורות לעפר מוסטיגמן</div>
       <br>
       <div id="test"></div>
+      <div style="font: 0px MyDavid;">this loads the font</div>
     </div>
   </body>
 </html>

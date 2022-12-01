@@ -50,7 +50,7 @@ def split_letters(letters):
     return groups
 
 def add_letters(ctx, letters, color, size, location_y, scale=1, location_x=14):
-    ctx.font = f"{size*scale}px David"
+    ctx.font = f"{size*scale}px MyDavid"
     ctx.textAlign = "center"
     ctx.fillStyle = color
     ctx.fillText(letters, location_x * scale, (location_y+10) * scale)
