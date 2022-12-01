@@ -76,14 +76,6 @@ def change_bg_color(event):
   document.getElementById("glyphcontainer").style.backgroundColor = color
 
 def main():
-  # check that script loaded
-  Loaded = False
-  while not Loaded:
-    try:
-      if file_loaded_successfully:
-        Loaded = True
-    except Exception:
-      pass
   proxy = create_proxy(render_textarea)
   document.getElementById("user_inserted_text").addEventListener("input", proxy)
   document.getElementById("font_size").addEventListener("input", proxy)
