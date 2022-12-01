@@ -9,7 +9,6 @@
 
     <link rel="icon" type="image/png" href="./favicon.png" />
     <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
-    <link rel="preload" href="https://mrmil.github.io/ivgul/david.ttf" as="font" type="font/ttf" />
 
     <script defer src="https://pyscript.net/latest/pyscript.js"></script>
     <style>
@@ -47,10 +46,7 @@
     
     </style>
         <py-script src="./ivgul.pys"></py-script>
-  </head>
-
-  <body>
-  <py-script defer>
+        <py-script defer>
 from pyodide.ffi import create_proxy
 from js import navigator, window, setTimeout, document
 
@@ -131,6 +127,9 @@ def call_main_functions_available():
 
 call_main_functions_available()
       </py-script>
+  </head>
+
+  <body>
     <div id="top"><div id="ivgul_header"></div></div>
     <div id="content" class="explaination-text">
         <h2 id="maze_header">מה זה?</h2>
