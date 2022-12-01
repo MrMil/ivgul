@@ -13,7 +13,7 @@
     <script defer src="https://pyscript.net/latest/pyscript.js"></script>
     <style>
     @font-face {
-      font-family: 'David';
+      font-family: 'MyDavid';
       src: url('https://mrmil.github.io/ivgul/david.ttf');
     }
     body {
@@ -48,7 +48,7 @@
         <py-script src="./ivgul.pys"></py-script>
         <py-script defer>
 from pyodide.ffi import create_proxy
-from js import navigator, window
+from js import navigator, window, setInterval, document
 
 
 def delete_target_div(target):
@@ -113,10 +113,16 @@ def main():
 וף|יםא|מץר אץ|לם|הןמ יץ|הן אםר
 וף|יץ|הן אםר""", "dugma", color="#4D4A00")
 
-try:
-  main()
-except NameError:
-  window.location.reload()
+
+def call_main_functions_available():
+  try:
+    if file_loaded_successfully:
+      main()
+  except NameError:
+    proxy = create_proxy(call_main_functions_available)
+    setInterval(proxy, 500)
+
+call_main_functions_available()
       </py-script>
   </head>
 
