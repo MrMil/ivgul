@@ -116,11 +116,15 @@ def main():
 
 
 def call_main_functions_available():
-  if file_loaded_successfully:
-    main()
-  else:
+  try:
+    if file_loaded_successfully:
+      pass
+  except NameError:
     proxy = create_proxy(call_main_functions_available)
     setInterval(proxy, 500)
+  else:
+    main()
+
 
 call_main_functions_available()
       </py-script>
