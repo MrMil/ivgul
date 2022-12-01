@@ -25,9 +25,6 @@ def split_letters(letters):
     vowel_count = 0
 
     for vowel in VOWELS.keys():
-        if letters[0] == vowel:
-            return None
-    
         count = letters.count(vowel)
         if count == 1:
             found_vowel = vowel
