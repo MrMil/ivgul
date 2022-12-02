@@ -7,7 +7,14 @@
 <head>
     <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
     <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    <link rel="preload" href="https://mrmil.github.io/ivgul/david.ttf" as="font" type="font/ttf" crossorigin />
     <py-script src="https://mrmil.github.io/ivgul/ivgul.pys"></py-script>
+    <style>
+        @font-face {
+            font-family: 'MyDavid';
+            src: url('"https://mrmil.github.io/ivgul/david.ttf');
+            }
+    </style>
 </head>
 ```
 

@@ -169,6 +169,10 @@ def render_ivgul(text, target, scale=1, color="#000000"):
         first_in_line = True
 
 def create_render_ivgul_js_function_in_window():
+    font_container = document.createElement('div')
+    font_container.style = "font: 0px MyDavid; position: absolute; visibility: hidden;"
+    font_container.innerHTML = "This is required for the font to be loaded"
+    document.body.appendChild(font_container)
     proxy = create_proxy(render_ivgul)
     window.render_ivgul = proxy
 
