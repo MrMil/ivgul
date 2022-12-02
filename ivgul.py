@@ -71,7 +71,7 @@ def draw_ivgul_glypph(groups, target, scale=1, color="#000000"):
     length = get_max_length(groups)
 
     if groups[1] == '' and groups[2] == '' and groups[0] in PUNCTUATION:
-        canvas.width = 28
+        canvas.width = 28 * scale
         add_letters(ctx, groups[0], color, 80, 45, scale)
     elif groups[2] == '': # 2 tall
         canvas.width = 28 * scale
