@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" dir="rtl">
   <head>
@@ -13,6 +12,11 @@
 
     <script defer src="https://pyscript.net/latest/pyscript.js"></script>
     <style>
+    canvas {
+      image-rendering: -moz-crisp-edges;    /* Firefox */
+      image-rendering: -webkit-crisp-edges; /* Webkit (Safari) */
+      image-rendering: pixelated;           /* Chrome */
+    }
     @font-face {
       font-family: 'MyDavid';
       src: url('./david.ttf');
@@ -42,9 +46,6 @@
         margin: 100px;
       }
     }
-    </style>
-    <style media="screen">
-    
     </style>
         <py-script src="./ivgul.py"></py-script>
         <py-script defer>
