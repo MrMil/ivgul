@@ -4,17 +4,17 @@ from pyodide.ffi import create_proxy
 VOWELS = {
     'ן': '.',
     'ם': '|',
-    'ף': ' ָ  ',
-    'ך': ' ֻ  ',
-    'ץ': ' ֶ  ',
+    'ף': ' ָ'.replace(' ', ''),
+    'ך': ' ֻ'.replace(' ', ''),
+    'ץ': ' ֶ'.replace(' ', ''),
 }
+
 
 DGESHIM = {
     'פ.': 'פּ',
     'ב.': 'בּ',
     'כ.': 'כּ'
 }
-
 
 def split_letters(letters):
     found_vowel = None
@@ -71,25 +71,25 @@ def draw_ivgul_glypph(groups, target, scale=1, color="#000000"):
     if groups[2] == '': # 2 tall
         canvas.width = 28 * scale
         if length == 1: # 1 wide
-            add_letters(ctx, groups[0], color, 45, 27, scale)
+            add_letters(ctx, groups[0], color, 45, 27, scale,)
             if groups[1] == "|":
                 add_letters(ctx, groups[1], color, 34, 50, scale)
             elif groups[1] == ".":
                 add_letters(ctx, groups[1], color, 60, 45, scale)
-            elif groups[1] == ' ֻ  ':
-                add_letters(ctx, groups[1], color, 50, 33, scale, 11)
+            elif groups[1] == VOWELS['ך']:
+                add_letters(ctx, groups[1], color, 50, 33, scale, 6)
             else:
-                add_letters(ctx, groups[1], color, 80, 30, scale)
+                add_letters(ctx, groups[1], color, 80, 30, scale, 6)
         else: # 2 wide
             add_letters(ctx, groups[0], color, 25, 17, scale)
             if groups[1] == "|":
                 add_letters(ctx, groups[1], color, 50, 50, scale)
             elif groups[1] == ".":
                 add_letters(ctx, groups[1], color, 90, 40, scale)
-            elif groups[1] == ' ֻ  ':
-                add_letters(ctx, groups[1], color, 50, 33, scale, 11)
+            elif groups[1] == VOWELS['ך']:
+                add_letters(ctx, groups[1], color, 50, 33, scale, 6)
             else:
-                add_letters(ctx, groups[1], color, 110, 25, scale)
+                add_letters(ctx, groups[1], color, 110, 25, scale, 3)
 
     else: # 3 tall
         if length == 1: # 1 wide
@@ -99,10 +99,10 @@ def draw_ivgul_glypph(groups, target, scale=1, color="#000000"):
                 add_letters(ctx, groups[1], color, 25, 35, scale, 8)
             elif groups[1] == ".":
                 add_letters(ctx, groups[1], color, 60, 32, scale, 8)
-            elif groups[1] == ' ֻ  ':
-                add_letters(ctx, groups[1], color, 45, 20, scale, 7)
+            elif groups[1] == VOWELS['ך']:
+                add_letters(ctx, groups[1], color, 45, 20, scale, 0)
             else:
-                add_letters(ctx, groups[1], color, 50, 20, scale, 8)
+                add_letters(ctx, groups[1], color, 50, 20, scale, 3)
             add_letters(ctx, groups[2], color, 25, 52, scale, 8)
         else: # 2 wide
             canvas.width = 31 * scale
@@ -111,8 +111,10 @@ def draw_ivgul_glypph(groups, target, scale=1, color="#000000"):
                 add_letters(ctx, groups[1], color, 25, 35, scale)
             elif groups[1] == ".":
                 add_letters(ctx, groups[1], color, 60, 32, scale)
+            elif groups[1] == VOWELS['ך']:
+                add_letters(ctx, groups[1], color, 60, 20, scale, 5)
             else:
-                add_letters(ctx, groups[1], color, 60, 20, scale)
+                add_letters(ctx, groups[1], color, 60, 20, scale, 8)
             add_letters(ctx, groups[2], color, 25, 52, scale)
 
     document.getElementById(target).appendChild(canvas)
